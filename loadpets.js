@@ -1,14 +1,13 @@
 const pets = [
-  { name: "Buddy", type: "Dog", age: 3, img: "img/dogs/dog01.jpg" },
-  { name: "Buddy", type: "Dog", age: 3, img: "img/dogs/dog02.jpg" },
-  { name: "Charlie", type: "Dog", age: 4, img: "img/dogs/dog03.jpg" },
-  { name: "Whiskers", type: "Cat", age: 2, img: "img/cats/cat01.jpg" },
-  { name: "Mittens", type: "Cat", age: 2, img: "img/cats/cat02.jpg" },
-  { name: "Shadow", type: "Cat", age: 5, img: "img/cats/cat03.jpg" },
-  { name: "Coco", type: "Capybara", age: 1, img: "img/capybaras/capybara01.jpg" },
-  { name: "Nibbles", type: "Capybara", age: 2, img: "img/capybaras/capybara02.jpg" },
-  { name: "Bubbles", type: "Bird", age: 3, img: "img/birds/bird01.jpg" },
-  { name: "Tweety", type: "Bird", age: 1, img: "img/birds/bird02.jpg" },
+  { name: "Buddy", type: "Dog", age: 3, img: "dog01.jpg" },
+  { name: "Charlie", type: "Dog", age: 4, img: "dog03.jpg" },
+  { name: "Whiskers", type: "Cat", age: 2, img: "cat01.jpg" },
+  { name: "Mittens", type: "Cat", age: 2, img: "cat02.jpg" },
+  { name: "Shadow", type: "Cat", age: 5, img: "cat03.jpg" },
+  { name: "Coco", type: "Capybara", age: 1, img: "capybara01.jpg" },
+  { name: "Nibbles", type: "Capybara", age: 2, img: "capybara02.jpg" },
+  { name: "Bubbles", type: "Bird", age: 3, img: "bird01.jpg" },
+  { name: "Tweety", type: "Bird", age: 1, img: "bird02.jpg" },
 ];
 
 function loadPets() {
