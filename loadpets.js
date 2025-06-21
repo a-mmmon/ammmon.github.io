@@ -1,45 +1,64 @@
-const pets = [ 
+const pets = [
+  { name: "Buddy", type: "Dog", age: 3, img: "img/dogs/dog01.jpg" },
+  { name: "Buddy", type: "Dog", age: 3, img: "img/dogs/dog02.jpg" },
+  { name: "Charlie", type: "Dog", age: 4, img: "img/dogs/dog03.jpg" },
+  { name: "Whiskers", type: "Cat", age: 2, img: "img/cats/cat01.jpg" },
+  { name: "Mittens", type: "Cat", age: 2, img: "img/cats/cat02.jpg" },
+  { name: "Shadow", type: "Cat", age: 5, img: "img/cats/cat03.jpg" },
+  { name: "Coco", type: "Capybara", age: 1, img: "img/capybaras/capybara01.jpg" },
+  { name: "Nibbles", type: "Capybara", age: 2, img: "img/capybaras/capybara02.jpg" },
+  { name: "Bubbles", type: "Bird", age: 3, img: "img/birds/bird01.jpg" },
+  { name: "Tweety", type: "Bird", age: 1, img: "img/birds/bird02.jpg" },
+];
 
-    {"name": "Buddy", 
-    "type": "Dog", 
-    "age": 3,
-     "img": "dog01.jpg"}, 
-  
-    {"name": "Whiskers",
-     "type": "Cat",
-      "age": 2,
-       "img": "cat01.jpg"}, 
-  
-    {"name": "Mittens",
-     "type": "Cat", 
-     "age": 2,  
-      "img": "cat02.jpg"}, 
+function loadPets() {
+  console.log("Loading pets...");
+  const petList = $("#pet-list");
+  petList.empty(); // Ensure it's clear before initial load
+  pets.forEach((pet) => {
+    const petItem = $("<div>").addClass("pet").html(`
+      <img src="${pet.img}" alt="${pet.name} the ${pet.type}">
+      <h3>${pet.name}</h3>
+      <p>Type: ${pet.type}</p>
+      <p>Age: ${pet.age} years</p>
+      <button class="adopt-btn">Adopt Now</button>
+    `);
+    petList.append(petItem);
+  });
 
-    {"name": "Tweety",
-      "type": "Bird", 
-      "age": 1,  
-       "img": "bird02.jpg"}, 
-    
-    {  "name": "Micky",
-       "type": "Capybara", 
-       "age": 3,  
-        "img": "capybara02.jpg"}, 
-  
-   
-  
-  ] 
-  var ap = document.getElementById("all-pets")
-  // ap.innerHTML = "<h1>Hello World</h1>";
-  
-  for (let i = 0; i < pets.length; i++) {
-      var aPet = ap.appendChild(document.createElement("div"));
-      aPet.className = "pet";
-      aPet.innerHTML = `
-      <img src="${pets[i].img}" alt="${pets[i].name}">
-      <h3>${pets[i].name}</h3>
-      <p>Type: ${pets[i].type}</p>
-      <p>Age: ${pets[i].age} years</p>
-      <button onclick="adoptPet()">Adopt Now</button>
-  `;
-  }
+  // Attach click handler using event delegation
+  petList.on("click", ".adopt-btn", adoptPet);
 
+  // Install checkbox change handler
+  $('input[name="pet-type"]').on("change", filterPets);
+}
+
+function filterPets() {
+  const types = $('input[name="pet-type"]:checked')
+    .map(function () {
+      return $(this).val();
+    })
+    .get();
+
+  const filteredPets = pets.filter((pet) => types.includes(pet.type));
+
+  const petList = $("#pet-list");
+  petList.empty();
+  filteredPets.forEach((pet) => {
+    const petItem = $("<div>").addClass("pet").html(`
+      <img src="${pet.img}" alt="${pet.name} the ${pet.type}">
+      <h3>${pet.name}</h3>
+      <p>Type: ${pet.type}</p>
+      <p>Age: ${pet.age} years</p>
+      <button class="adopt-btn">Adopt Now</button>
+    `);
+    petList.append(petItem);
+  });
+}
+
+function adoptPet() {
+  const petName = $(this).siblings("h3").text();
+  alert(`Thank you for adopting ${petName}! 🐾`);
+}
+
+$(document).ready(loadPets);
